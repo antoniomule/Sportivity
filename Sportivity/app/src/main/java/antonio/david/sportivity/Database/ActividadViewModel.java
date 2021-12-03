@@ -20,7 +20,7 @@ public class ActividadViewModel extends AndroidViewModel {
         mAllActivities = mRepository.getmAllActivities();
     }
 
-    LiveData<List<Actividad>> getAllActivities() { return mAllActivities; }
+    public LiveData<List<Actividad>> getAllActivities() { return mAllActivities; }
 
     public void insert(Actividad actividad) { mRepository.insert(actividad); }
 

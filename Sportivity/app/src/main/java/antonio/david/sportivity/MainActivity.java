@@ -4,24 +4,34 @@ import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import antonio.david.sportivity.Database.Actividad;
+import antonio.david.sportivity.Database.ActividadViewModel;
 import antonio.david.sportivity.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private ActividadViewModel mActividadModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,33 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        RecyclerView recyclerView = findViewById(R.id.reciclerView);
+        final ActividadListAdapter adapter = new ActividadListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mActividadModel = ViewModelProviders.of(this).get(ActividadViewModel.class);
+
+
+        mActividadModel.getAllActivities().observe(this, new Observer<List<Actividad>>() {
+            @Override
+            public void onChanged(@Nullable final List<Actividad> actividades) {
+                adapter.setmActividades(actividades);
+            }
+        });
+
+        adapter.setOnItemClickListener(new ActividadListAdapter.ClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Actividad actividad = adapter.getActividadAtPosition(position);
+                System.out.println("clicko en la actividad");
+                //launchUpdateWordActivity(word);
+
+            }
+        });
+
+
     }
 
     @Override

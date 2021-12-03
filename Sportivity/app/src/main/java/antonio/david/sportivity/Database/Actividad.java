@@ -11,13 +11,13 @@ import androidx.room.PrimaryKey;
 public class Actividad {
 
     @PrimaryKey (autoGenerate = true)
+    @NonNull
     private int id;
-
     private String nombreActividad;
     private String descripcionActividad;
     private String zonaEntreno;
 
-    @Ignore
+
     public Actividad(String nombreActividad, String descripcionActividad, String zonaEntreno) {
         this.nombreActividad = nombreActividad;
         this.descripcionActividad = descripcionActividad;
