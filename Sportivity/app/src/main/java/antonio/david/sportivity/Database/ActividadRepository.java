@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+//3
 public class ActividadRepository {
     private ActividadDAO mActividadDAO;
     private LiveData<List<Actividad>> mAllActivities;
@@ -15,12 +16,24 @@ public class ActividadRepository {
     ActividadRepository(Application application){
         ActividadRoomDatabase db = ActividadRoomDatabase.getDatabase(application);
         mActividadDAO = db.actividadDAO();
-        mAllActivities = mActividadDAO.getAlphabetizedWords();
+        mAllActivities = mActividadDAO.getAlphabetizedActivities();
     }
+
+
 
     LiveData<List<Actividad>> getmAllActivities() {
         return mAllActivities;
     }
+
+    LiveData<List<Actividad>> getAllpre() {
+        return mActividadDAO.getAllpre();
+    }
+
+    LiveData<List<Actividad>> getAllNotpre() {
+        return mActividadDAO.getAllNotpre();
+    }
+
+
 
     public void insert (Actividad actividad){
         new insertAsyncTask(mActividadDAO).execute(actividad);
@@ -42,13 +55,16 @@ public class ActividadRepository {
     }
 
     public void deleteAll()  {
-        new deleteAllWordsAsyncTask(mActividadDAO).execute();
+        new deleteAllActivityAsyncTask(mActividadDAO).execute();
     }
 
-    private static class deleteAllWordsAsyncTask extends AsyncTask<Void, Void, Void> {
+
+
+
+    private static class deleteAllActivityAsyncTask extends AsyncTask<Void, Void, Void> {
         private ActividadDAO mAsyncTaskDao;
 
-        deleteAllWordsAsyncTask(ActividadDAO dao) {
+        deleteAllActivityAsyncTask(ActividadDAO dao) {
             mAsyncTaskDao = dao;
         }
 
@@ -59,21 +75,38 @@ public class ActividadRepository {
         }
     }
 
-    public void deleteWord(Actividad actividad) {
-        new deleteWordAsyncTask(mActividadDAO).execute(actividad);
+
+    public void deleteAllNotPreActivities()  { new deleteAllNotPreActivityAsyncTask(mActividadDAO).execute(); }
+
+    private static class deleteAllNotPreActivityAsyncTask extends AsyncTask<Void, Void, Void> {
+        private ActividadDAO mAsyncTaskDao;
+
+        deleteAllNotPreActivityAsyncTask(ActividadDAO dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mAsyncTaskDao.deleteAllNotPreActivities();
+            return null;
+        }
+    }
+
+    public void deleteActivity(Actividad actividad) {
+        new deleteActivityAsyncTask(mActividadDAO).execute(actividad);
 
     }
 
-    private static class deleteWordAsyncTask extends AsyncTask<Actividad, Void, Void> {
+    private static class deleteActivityAsyncTask extends AsyncTask<Actividad, Void, Void> {
         private ActividadDAO mAsyncTaskDao;
 
-        deleteWordAsyncTask(ActividadDAO dao) {
+        deleteActivityAsyncTask(ActividadDAO dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
         protected Void doInBackground(final Actividad... params) {
-            mAsyncTaskDao.deleteWord(params[0]);
+            mAsyncTaskDao.deleteActivity(params[0]);
             return null;
         }
     }

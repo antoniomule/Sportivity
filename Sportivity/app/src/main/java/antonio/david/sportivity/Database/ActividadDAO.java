@@ -8,14 +8,18 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
-
-import antonio.david.sportivity.Database.Actividad;
-
+//1
 @Dao
 public interface ActividadDAO {
 
     @Query("SELECT * from actividad_table ORDER BY nombreActividad ASC")
-    LiveData<List<Actividad>> getAlphabetizedWords();
+    LiveData<List<Actividad>> getAlphabetizedActivities();
+
+    @Query("SELECT * from actividad_table WHERE tipo=1 ORDER BY nombreActividad ASC")
+    LiveData<List<Actividad>> getAllpre();
+
+    @Query("SELECT * from actividad_table WHERE tipo=0 ORDER BY nombreActividad ASC")
+    LiveData<List<Actividad>> getAllNotpre();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Actividad actividad);
@@ -23,10 +27,14 @@ public interface ActividadDAO {
     @Query("DELETE FROM actividad_table")
     void deleteAll();
 
+    @Query("DELETE FROM actividad_table WHERE tipo=0")
+    void deleteAllNotPreActivities();
+
+
     @Query("SELECT * from actividad_table LIMIT 1")
-    Actividad[] getAnyWord();
+    Actividad[] getAnyActivity();
 
     @Delete
-    void deleteWord(Actividad actividad);
+    void deleteActivity(Actividad actividad);
 
 }

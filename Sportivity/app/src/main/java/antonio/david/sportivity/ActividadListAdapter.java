@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,22 +32,35 @@ public class ActividadListAdapter extends RecyclerView.Adapter<ActividadListAdap
     @NonNull
     @Override
     public ActividadViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.activities_pre, parent, false);
-        return null;
+        View itemView = mInflater.inflate(R.layout.activity_pre_cardview, parent, false);
+        return new ActividadViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ActividadViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ActividadListAdapter.ActividadViewHolder holder, int position) {
 
         if (mActividades != null) {
             Actividad current = mActividades.get(position);
             holder.nombreActividad.setText(current.getNombreActividad());
-            holder.descripcionActividad.setText(current.getNombreActividad());
             holder.zonaEntreno.setText(current.getZonaEntreno());
+            if(current.getRepeticiones()==0){
+                holder.tiempo_repeticiones.setText(current.getTiempo()+" min");
+            }else
+                holder.tiempo_repeticiones.setText(current.getRepeticiones()+" repetciones");
+
+            if (current.getZonaEntreno().equals("Brazos")){
+                holder.imageView.setImageResource(R.drawable.brazo);
+            }
+            if(current.getZonaEntreno().equals("Abdomen")){
+                holder.imageView.setImageResource(R.drawable.abdomen);
+            }
+            if(current.getZonaEntreno().equals("Piernas")){
+                holder.imageView.setImageResource(R.drawable.pierna);
+            }
         } else {
             holder.nombreActividad.setText("Sin nombre");
-            holder.descripcionActividad.setText("Sin descripcion");
             holder.zonaEntreno.setText("sin zona");
+            holder.tiempo_repeticiones.setText("0");
         }
     }
     void setmActividades(List<Actividad> actividad) {
@@ -65,26 +79,22 @@ public class ActividadListAdapter extends RecyclerView.Adapter<ActividadListAdap
         return mActividades.get(position);
     }
 
-    public class ActividadViewHolder extends RecyclerView.ViewHolder {
+    class ActividadViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView nombreActividad;
-        public final TextView descripcionActividad;
-        public final TextView zonaEntreno;
 
-        public ActividadViewHolder(@NonNull View itemView, TextView nombreActividad, TextView descripcionActividad, TextView zonaEntreno) {
-            super(itemView);
-            this.nombreActividad = nombreActividad;
-            this.descripcionActividad = descripcionActividad;
-            this.zonaEntreno = zonaEntreno;
-        }
+        private final TextView nombreActividad;
+        private final TextView zonaEntreno;
+        private final TextView tiempo_repeticiones;
+        private final ImageView imageView;
 
-        private ActividadViewHolder(View itemView) {
-            super(itemView);
-            nombreActividad = itemView.findViewById(R.id.nombreActividad);
-            descripcionActividad = itemView.findViewById(R.id.descripcion);
-            zonaEntreno = itemView.findViewById(R.id.zonaEntreno);
+        private ActividadViewHolder(View mItemView) {
+            super(mItemView);
+            this.nombreActividad = mItemView.findViewById(R.id.nombreActividad);
+            this.zonaEntreno = (TextView) mItemView.findViewById(R.id.zonaEntreno);
+            this.tiempo_repeticiones = (TextView) mItemView.findViewById(R.id.tiempo_repeticion);
+            this.imageView = mItemView.findViewById(R.id.imagenZonaBackground);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            mItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     clickListener.onItemClick(view, getAdapterPosition());
@@ -99,4 +109,5 @@ public class ActividadListAdapter extends RecyclerView.Adapter<ActividadListAdap
     public interface ClickListener {
         void onItemClick(View v, int position);
     }
+
 }

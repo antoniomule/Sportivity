@@ -5,9 +5,18 @@
       <map>
         <entry key="app/src/main/res/drawable/my_button.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activities_pre.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/activity_pre_cardview.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/content_main.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.3697916666666667" />
+        <entry key="app/src/main/res/layout/activity_lisit_actividades.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_list_not_pre.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_list_pre.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_new.xml" value="0.3697916666666667" />
+        <entry key="app/src/main/res/layout/activity_pre_cardview.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/add_activity.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/zona_entreno_cardview.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/zonaent.xml" value="0.19375" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.21666666666666667" />
       </map>
     </option>
   </component>

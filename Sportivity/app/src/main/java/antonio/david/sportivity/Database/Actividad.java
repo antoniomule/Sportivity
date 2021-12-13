@@ -14,14 +14,26 @@ public class Actividad {
     @NonNull
     private int id;
     private String nombreActividad;
-    private String descripcionActividad;
     private String zonaEntreno;
+    private int tiempo;
+    private int repeticiones;
+    private int tipo;
 
-
-    public Actividad(String nombreActividad, String descripcionActividad, String zonaEntreno) {
+    public Actividad(String nombreActividad, String zonaEntreno, int tiempo, int repeticiones, int tipo) {
         this.nombreActividad = nombreActividad;
-        this.descripcionActividad = descripcionActividad;
         this.zonaEntreno = zonaEntreno;
+        this.tiempo = tiempo;
+        this.repeticiones = repeticiones;
+        this.tipo = tipo;
+    }
+
+    @Ignore
+    public Actividad(String nombreActividad, String zonaEntreno, int tiempo, int repeticiones) {
+        this.nombreActividad = nombreActividad;
+        this.zonaEntreno = zonaEntreno;
+        this.tiempo = tiempo;
+        this.repeticiones = repeticiones;
+        this.tipo = 0;
     }
 
     public int getId() {
@@ -40,19 +52,47 @@ public class Actividad {
         this.nombreActividad = nombreActividad;
     }
 
-    public String getDescripcionActividad() {
-        return descripcionActividad;
-    }
-
-    public void setDescripcionActividad(String descripcionActividad) {
-        this.descripcionActividad = descripcionActividad;
-    }
-
     public String getZonaEntreno() {
         return zonaEntreno;
     }
 
     public void setZonaEntreno(String zonaEntreno) {
         this.zonaEntreno = zonaEntreno;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public int getRepeticiones() {
+        return repeticiones;
+    }
+
+    public void setRepeticiones(int repeticiones) {
+        this.repeticiones = repeticiones;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Actividad{" +
+                "id=" + id +
+                ", nombreActividad='" + nombreActividad + '\'' +
+                ", zonaEntreno='" + zonaEntreno + '\'' +
+                ", tiempo=" + tiempo +
+                ", repeticiones=" + repeticiones +
+                ", tipo='" + tipo + '\'' +
+                '}';
     }
 }

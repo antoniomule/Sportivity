@@ -1,5 +1,5 @@
 package antonio.david.sportivity.Database;
-
+//4
 import android.app.Application;
 
 import androidx.annotation.NonNull;
@@ -22,10 +22,20 @@ public class ActividadViewModel extends AndroidViewModel {
 
     public LiveData<List<Actividad>> getAllActivities() { return mAllActivities; }
 
+    public LiveData<List<Actividad>> getAllpre() {
+        return mRepository.getAllpre();
+    }
+
+    public LiveData<List<Actividad>> getAllNotpre() {
+        return mRepository.getAllNotpre();
+    }
+
     public void insert(Actividad actividad) { mRepository.insert(actividad); }
 
     public void deleteAll() {mRepository.deleteAll();}
 
-    public void deleteWord(Actividad actividad) {mRepository.deleteWord(actividad);}
+    public void deleteAllNotPreActivities() {mRepository.deleteAllNotPreActivities();}
+
+    public void deleteWord(Actividad actividad) {mRepository.deleteActivity(actividad);}
 
 }

@@ -9,6 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+//2
 @Database(entities = {Actividad.class}, version = 1, exportSchema = false)
 public abstract class ActividadRoomDatabase extends RoomDatabase {
 
@@ -21,7 +22,7 @@ public abstract class ActividadRoomDatabase extends RoomDatabase {
             synchronized (ActividadRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            ActividadRoomDatabase.class, "word_database")
+                            ActividadRoomDatabase.class, "activity_database")
                             .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
@@ -43,9 +44,14 @@ public abstract class ActividadRoomDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final ActividadDAO mDao;
-        Actividad actividad1 = new Actividad("actividad1", "corre", "piernas");
-
-        Actividad [] actividades = {actividad1};
+        Actividad actividad1 = new Actividad("Correr", "Piernas", 30, 0, 1);
+        Actividad actividad2 = new Actividad("Sentadillas", "Piernas", 0, 10, 1);
+        Actividad actividad3 = new Actividad("Abdominales", "Abdomen", 0, 15, 1);
+        Actividad actividad4 = new Actividad("Pesas", "Brazos", 0, 20, 1);
+        Actividad actividad5 = new Actividad("Plancha", "Abdomen", 1, 0, 1);
+        Actividad actividad6 = new Actividad("Largos piscina", "Abdomen", 0, 5, 1);
+        Actividad actividad7 = new Actividad("Sprint", "Piernas", 0, 5, 1);
+        Actividad [] actividades = {actividad1, actividad2, actividad3, actividad4, actividad5, actividad6, actividad7};
 
         PopulateDbAsync(ActividadRoomDatabase db) {
             mDao = db.actividadDAO();
@@ -53,7 +59,8 @@ public abstract class ActividadRoomDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(final Void... params) {
-            if (mDao.getAnyWord().length < 1) {
+
+            if (mDao.getAnyActivity().length < 1) {
                 for (int i = 0; i <= actividades.length - 1; i++) {
                     mDao.insert(actividades[i]);
                 }
@@ -61,7 +68,4 @@ public abstract class ActividadRoomDatabase extends RoomDatabase {
             return null;
         }
     }
-
-
-
 }

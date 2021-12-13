@@ -6,5 +6,75 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="396dp"
+        android:layout_height="661dp"
+        android:layout_marginBottom="253dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/fondolayout"
+        />
 
+    <Button
+        android:id="@+id/buttonActivitiesPre"
+        android:layout_width="137dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#6D9BFB00"
+        android:text="Actividades"
+        app:layout_constraintEnd_toStartOf="@+id/buttonYourActivities"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+
+        />
+
+    <Button
+        android:id="@+id/buttonWeather"
+        android:layout_width="133dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#6D02FF0E"
+        android:text="Tiempo en tu zona"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonYourActivities" />
+
+    <Button
+        android:id="@+id/buttonYourActivities"
+        android:layout_width="137dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#6D9DFF00"
+        android:text="Tus Actividades"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        />
+
+    <Button
+        android:id="@+id/buttonVideos"
+        android:layout_width="130dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#4DF83737"
+        android:text="Aprende"
+        app:layout_constraintEnd_toStartOf="@+id/buttonWeather"
+        app:layout_constraintTop_toBottomOf="@+id/buttonActivitiesPre" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="210dp"
+        android:layout_height="157dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logoandroid" />
 </androidx.constraintlayout.widget.ConstraintLayout>
