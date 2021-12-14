@@ -53,4 +53,8 @@ dependencies {
     //imagenes
     implementation 'com.squareup.picasso:picasso:2.8'
 
+    //weather api
+    implementation 'com.github.androdocs:Simple-HTTP-Request:v1.0'
+
+    //key 275dd33817d21c3d0f9e8c2792f90b6a
 }

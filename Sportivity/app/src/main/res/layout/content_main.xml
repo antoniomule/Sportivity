@@ -37,8 +37,8 @@
         android:id="@+id/buttonWeather"
         android:layout_width="133dp"
         android:layout_height="61dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="108dp"
         android:backgroundTint="#6D02FF0E"
         android:text="Tiempo en tu zona"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,17 +55,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         />
-
-    <Button
-        android:id="@+id/buttonVideos"
-        android:layout_width="130dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="40dp"
-        android:backgroundTint="#4DF83737"
-        android:text="Aprende"
-        app:layout_constraintEnd_toStartOf="@+id/buttonWeather"
-        app:layout_constraintTop_toBottomOf="@+id/buttonActivitiesPre" />
 
     <ImageView
         android:id="@+id/imageView2"

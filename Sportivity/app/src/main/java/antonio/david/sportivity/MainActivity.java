@@ -53,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, TEXT_REQUEST);
             }
         });
+
+        final Button buttonWeather = findViewById(R.id.buttonWeather);
+        buttonWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+                startActivityForResult(intent, TEXT_REQUEST);
+            }
+        });
     }
 
 

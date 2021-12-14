@@ -8,5 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#ff6c00</color>
+    <color name="red">#f12711</color>
+
+    <!--<color name="text1">#000000</color>
+    <color name="text2">#ffffff</color>
+    <color name="text3">#ff6c00</color>-->
 
 </resources>

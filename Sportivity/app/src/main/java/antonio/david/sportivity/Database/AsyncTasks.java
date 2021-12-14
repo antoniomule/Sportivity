@@ -18,7 +18,7 @@ public abstract class AsyncTasks<Params, Progres, Result> {
         executors.execute(new Runnable() {
             @Override
             public void run() {
-               result= doInBackground(params);
+                result= doInBackground(params);
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
