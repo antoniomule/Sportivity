@@ -44,14 +44,26 @@ public abstract class ActividadRoomDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final ActividadDAO mDao;
+        Actividad actividad = new Actividad("Buerpees", "Piernas", 2, 0, 1);
         Actividad actividad1 = new Actividad("Correr", "Piernas", 30, 0, 1);
         Actividad actividad2 = new Actividad("Sentadillas", "Piernas", 0, 10, 1);
         Actividad actividad3 = new Actividad("Abdominales", "Abdomen", 0, 15, 1);
-        Actividad actividad4 = new Actividad("Pesas", "Brazos", 0, 20, 1);
+        Actividad actividad4 = new Actividad("Mancuerna", "Brazos", 0, 20, 1);
         Actividad actividad5 = new Actividad("Plancha", "Abdomen", 1, 0, 1);
-        Actividad actividad6 = new Actividad("Largos piscina", "Abdomen", 0, 5, 1);
+        Actividad actividad6 = new Actividad("Sit up", "Abdomen", 0, 25, 1);
         Actividad actividad7 = new Actividad("Sprint", "Piernas", 0, 5, 1);
-        Actividad [] actividades = {actividad1, actividad2, actividad3, actividad4, actividad5, actividad6, actividad7};
+        Actividad actividad8 = new Actividad("Zancada", "Piernas", 0, 25, 1);
+        Actividad actividad9 = new Actividad("Crunch Invertido", "Abdomen", 2, 0, 1);
+        Actividad actividad10 = new Actividad("Curl de biceps con Barra", "Brazos", 0, 20, 1);
+        Actividad actividad11 = new Actividad("Extensión concentrada", "Brazos", 0, 20, 1);
+        Actividad actividad12 = new Actividad("Dip de triceps", "Brazos", 0, 20, 1);
+        Actividad actividad13 = new Actividad("Remo", "Brazos", 0, 20, 1);
+
+
+
+
+
+        Actividad [] actividades = {actividad, actividad1, actividad12, actividad2, actividad9, actividad3, actividad13, actividad4, actividad10, actividad5, actividad6, actividad11, actividad7, actividad8, actividad9};
 
         PopulateDbAsync(ActividadRoomDatabase db) {
             mDao = db.actividadDAO();

@@ -1,20 +1,26 @@
 package antonio.david.sportivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import java.io.Serializable;
 import java.util.Locale;
 
 import antonio.david.sportivity.Database.Actividad;
 
-public class Activity_Detail extends AppCompatActivity {
+public class Activity_DetailFragment extends Fragment {
+
+        public Actividad actividad;
 
     String nombreActividad;
     String ZonaEntreno;
@@ -33,20 +39,28 @@ public class Activity_Detail extends AppCompatActivity {
     private boolean mTimerRunning;
     private long mTimeLeftInMillis;
 
+    public Activity_DetailFragment() {
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-        //Textos
-        NombreActividadInDetail = findViewById(R.id.NombreActividadInDetail);
-        tiempo_repeticion_a_ejercitar = findViewById(R.id.tiempo_repeticion_a_ejercitar);
-        imageViewDetail = findViewById(R.id.imageViewDetail);
-        min_rep = findViewById(R.id.min_rep);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_lisit_actividades, container, false);
+        NombreActividadInDetail = rootView.findViewById(R.id.NombreActividadInDetail);
+        tiempo_repeticion_a_ejercitar = rootView.findViewById(R.id.tiempo_repeticion_a_ejercitar);
+        imageViewDetail = rootView.findViewById(R.id.imageViewDetail);
+        min_rep = rootView.findViewById(R.id.min_rep);
 
         //Temporizador
-        text_view_timer = findViewById(R.id.text_view_timer);
-        mButtonStartPause = findViewById(R.id.button_start_pause);
-        mButtonReset = findViewById(R.id.button_reset);
+        text_view_timer = rootView.findViewById(R.id.text_view_timer);
+        mButtonStartPause = rootView.findViewById(R.id.button_start_pause);
+        mButtonReset = rootView.findViewById(R.id.button_reset);
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,12 +79,8 @@ public class Activity_Detail extends AppCompatActivity {
             }
         });
 
-
-
-        nombreActividad = getIntent().getStringExtra("Nombre");
         NombreActividadInDetail.setText(nombreActividad);
 
-        ZonaEntreno = getIntent().getStringExtra("ZonaEntreno");
 
         if (ZonaEntreno.equals("Brazos")){
             imageViewDetail.setImageResource(R.drawable.brazo);
@@ -81,9 +91,8 @@ public class Activity_Detail extends AppCompatActivity {
         if(ZonaEntreno.equals("Piernas")){
             imageViewDetail.setImageResource(R.drawable.pierna);
         }
-        Tiempo = getIntent().getIntExtra("Tiempo", 0);
+
         mTimeLeftInMillis=Tiempo* 60000L;
-        Repeticiones = getIntent().getIntExtra("Repeticiones", 0);
 
         if(Repeticiones==0){
             tiempo_repeticion_a_ejercitar.setText(String.valueOf(Tiempo));
@@ -97,8 +106,15 @@ public class Activity_Detail extends AppCompatActivity {
         }
 
         updateCountDownText();
+        return rootView;
     }
 
+    public void getObjeto(Actividad actividad){
+        nombreActividad=actividad.getNombreActividad();
+        ZonaEntreno= actividad.getZonaEntreno();
+        Tiempo=actividad.getTiempo();
+        Repeticiones=actividad.getRepeticiones();
+    }
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override

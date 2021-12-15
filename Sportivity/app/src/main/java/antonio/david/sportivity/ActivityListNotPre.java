@@ -2,6 +2,8 @@ package antonio.david.sportivity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -21,7 +23,7 @@ import antonio.david.sportivity.Database.ActividadViewModel;
 
 public class ActivityListNotPre extends AppCompatActivity {
 
-
+    public static boolean mTwoPaneListNotPre = false;
     private static final int TEXT_REQUEST = 1;
     private ActividadViewModel mActividadModel;
 
@@ -36,7 +38,9 @@ public class ActivityListNotPre extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mActividadModel = ViewModelProviders.of(this).get(ActividadViewModel.class);
-
+        if (findViewById(R.id.fragmentContainerViewDetail_Activity) != null) {
+            mTwoPaneListNotPre = true;
+        }
 
         mActividadModel.getAllNotpre().observe(this, new Observer<List<Actividad>>() {
             @Override
@@ -50,13 +54,23 @@ public class ActivityListNotPre extends AppCompatActivity {
         adapter.setOnItemClickListener(new ActividadListAdapter.ClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Actividad actividad = adapter.getActividadAtPosition(position);
-                Intent intent = new Intent(ActivityListNotPre.this, Activity_Detail.class);
-                intent.putExtra("Nombre", actividad.getNombreActividad());
-                intent.putExtra("ZonaEntreno", actividad.getZonaEntreno());
-                intent.putExtra("Tiempo", actividad.getTiempo());
-                intent.putExtra("Repeticiones", actividad.getRepeticiones());
-                startActivity(intent);
+                if (mTwoPaneListNotPre) {
+                    Actividad actividad = adapter.getActividadAtPosition(position);
+                    Activity_DetailFragment fragment = (Activity_DetailFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerViewDetail_Activity);
+                    fragment.getObjeto(actividad);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainerViewDetail_Activity, fragment)
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    Actividad actividad = adapter.getActividadAtPosition(position);
+                    Intent intent = new Intent(ActivityListNotPre.this, Activity_Detail.class);
+                    intent.putExtra("Nombre", actividad.getNombreActividad());
+                    intent.putExtra("ZonaEntreno", actividad.getZonaEntreno());
+                    intent.putExtra("Tiempo", actividad.getTiempo());
+                    intent.putExtra("Repeticiones", actividad.getRepeticiones());
+                    startActivity(intent);
+                }
             }
         });
 

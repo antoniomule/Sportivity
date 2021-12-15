@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="422dp"
-        android:layout_height="736dp"
+        android:layout_width="1003dp"
+        android:layout_height="1741dp"
         android:layout_marginBottom="253dp"
         android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,64 +21,52 @@
 
     <Button
         android:id="@+id/buttonActivitiesPre"
-        android:layout_width="164dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="320dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="512dp"
+        android:layout_marginEnd="224dp"
         android:backgroundTint="#6D9BFB00"
         android:text="@string/actividades"
+        android:textSize="34sp"
         android:textColor="#000000"
-        android:textSize="16sp"
-
         app:layout_constraintEnd_toStartOf="@+id/buttonYourActivities"
+
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/buttonWeather"
-        android:layout_width="172dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="92dp"
+        android:layout_width="305dp"
+        android:layout_height="148dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="324dp"
         android:backgroundTint="#6D02FF0E"
         android:text="@string/tiempo_en_tu_zona"
+        android:textSize="34sp"
         android:textColor="#000000"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonYourActivities" />
 
     <Button
         android:id="@+id/buttonYourActivities"
-        android:layout_width="153dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="289dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="520dp"
+        android:layout_marginEnd="84dp"
         android:backgroundTint="#6D9DFF00"
         android:text="@string/tus_actividades"
+        android:textSize="34sp"
         android:textColor="#000000"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="210dp"
-        android:layout_height="157dp"
+        android:layout_width="596dp"
+        android:layout_height="333dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logoandroid" />
-
-    <TextView
-        android:id="@+id/textViewTeApetece"
-        android:layout_width="189dp"
-        android:layout_height="21dp"
-        android:text="@string/haces_deporte_al_aire_libre"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonWeather" />
 </androidx.constraintlayout.widget.ConstraintLayout>

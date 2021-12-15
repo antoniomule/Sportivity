@@ -15,8 +15,6 @@ import java.util.List;
 
 import antonio.david.sportivity.Database.Actividad;
 
-//Tengo que acordarme que si quiero mostrar una lista de las categorias de los deportes, tengo que hacer un adapter diferente
-
 
 public class ActividadListAdapter extends RecyclerView.Adapter<ActividadListAdapter.ActividadViewHolder> {
 
@@ -36,15 +34,17 @@ public class ActividadListAdapter extends RecyclerView.Adapter<ActividadListAdap
         return new ActividadViewHolder(itemView);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ActividadListAdapter.ActividadViewHolder holder, int position) {
+
 
         if (mActividades != null) {
             Actividad current = mActividades.get(position);
             holder.nombreActividad.setText(current.getNombreActividad());
             holder.zonaEntreno.setText(current.getZonaEntreno());
             if(current.getRepeticiones()==0){
-                holder.tiempo_repeticiones.setText(current.getTiempo()+" min");
+                holder.tiempo_repeticiones.setText(current.getTiempo()+" Minutos");
             }else
                 holder.tiempo_repeticiones.setText(current.getRepeticiones()+" repetciones");
 
@@ -58,8 +58,8 @@ public class ActividadListAdapter extends RecyclerView.Adapter<ActividadListAdap
                 holder.imageView.setImageResource(R.drawable.pierna);
             }
         } else {
-            holder.nombreActividad.setText("Sin nombre");
-            holder.zonaEntreno.setText("sin zona");
+            holder.nombreActividad.setText(R.string.sin_nombre);
+            holder.zonaEntreno.setText(R.string.sin_zona);
             holder.tiempo_repeticiones.setText("0");
         }
     }

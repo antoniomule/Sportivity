@@ -1,48 +1,32 @@
 package antonio.david.sportivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.androdocs.httprequest.HttpRequest;
 
-import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
 import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
-
+/**
+ * Clase Weather me he ayudado de https://github.com/barmangolap15/Weather-Information-App-in-Android-JAVA
+ */
 public class WeatherActivity extends AppCompatActivity {
-
-
-    String CITY;
+    //Dejo el valor cadiz predeterminado como la String que se busca, ya que no tengo suficiente tiempo para añadir
+    //una funcionalidad de ubicación
+    String CITY = "Cadiz";
     String API = "275dd33817d21c3d0f9e8c2792f90b6a";
     ImageView search;
     EditText etCity;
@@ -53,16 +37,11 @@ public class WeatherActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weather_activity);
         {
             etCity =  findViewById(R.id.Your_city);
             search = findViewById(R.id.search);
-
 
             city =  findViewById(R.id.city);
             country = findViewById(R.id.country);
@@ -77,30 +56,17 @@ public class WeatherActivity extends AppCompatActivity {
             pressure = findViewById(R.id.pressure);
             windSpeed = findViewById(R.id.wind_speed);
 
-
             search.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CITY = "CADIZ";/*etCity.getText().toString();*/
+                    if(!etCity.getText().toString().trim().equals("")){
+                        CITY = etCity.getText().toString();
+                    }
                     new weatherTask().execute();
                 }
             });
         }
-        try {
-            certificado();
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
     }
-
 
 
     class weatherTask extends AsyncTask<String, Void, String> {
@@ -126,7 +92,6 @@ public class WeatherActivity extends AppCompatActivity {
                 JSONObject sys = jsonObj.getJSONObject("sys");
 
 
-
                 String city_name = jsonObj.getString("name");
                 String countryname = sys.getString("country");
                 Long updatedAt = jsonObj.getLong("dt");
@@ -144,7 +109,6 @@ public class WeatherActivity extends AppCompatActivity {
                 String sunset = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(set * 1000));
 
 
-
                 city.setText(city_name);
                 country.setText(countryname);
                 time.setText(updatedAtText);
@@ -159,48 +123,8 @@ public class WeatherActivity extends AppCompatActivity {
                 windSpeed.setText(windspeed);
 
             } catch (Exception e) {
-
-                Toast.makeText(WeatherActivity.this, "Error:" + e.toString(), Toast.LENGTH_SHORT).show();
-            }
+                System.out.println("Error: "+ e.toString());
+                }
         }
-    }
-
-    public static void certificado() throws CertificateException, IOException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
-
-        // Load CAs from an InputStream
-        // (could be from a resource or ByteArrayInputStream or ...)
-        CertificateFactory cf = CertificateFactory.getInstance("X.509");
-        // From https://www.washington.edu/itconnect/security/ca/load-der.crt
-        InputStream caInput = new BufferedInputStream(new FileInputStream("SectigoRSADomainValidationSecureServerCA.crt"));
-        Certificate ca;
-        try {
-            ca = cf.generateCertificate(caInput);
-            System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
-        } finally {
-            caInput.close();
-        }
-
-        // Create a KeyStore containing our trusted CAs
-        String keyStoreType = KeyStore.getDefaultType();
-        KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-        keyStore.load(null, null);
-        keyStore.setCertificateEntry("ca", ca);
-
-        // Create a TrustManager that trusts the CAs in our KeyStore
-        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-        TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-        tmf.init(keyStore);
-
-        // Create an SSLContext that uses our TrustManager
-        SSLContext context = SSLContext.getInstance("TLS");
-        context.init(null, tmf.getTrustManagers(), null);
-
-        // Tell the URLConnection to use a SocketFactory from our SSLContext
-        URL url = new URL("https://api.openweathermap.org/");
-        HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
-        urlConnection.setSSLSocketFactory(context.getSocketFactory());
-        InputStream in = urlConnection.getInputStream();
-        //copyInputStreamToOutputStream(in, System.out);
-
     }
 }
