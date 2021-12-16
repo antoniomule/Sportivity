@@ -56,8 +56,7 @@ public class ActivityListNotPre extends AppCompatActivity {
             public void onItemClick(View v, int position) {
                 if (mTwoPaneListNotPre) {
                     Actividad actividad = adapter.getActividadAtPosition(position);
-                    Activity_DetailFragment fragment = (Activity_DetailFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerViewDetail_Activity);
-                    fragment.getObjeto(actividad);
+                    Activity_DetailFragment fragment = Activity_DetailFragment.newInstance(actividad.getNombreActividad(), actividad.getZonaEntreno(), actividad.getTiempo(), actividad.getRepeticiones());
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragmentContainerViewDetail_Activity, fragment)
                             .addToBackStack(null)

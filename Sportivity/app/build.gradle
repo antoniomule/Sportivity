@@ -56,5 +56,6 @@ dependencies {
     //weather api request internet
     implementation 'com.github.androdocs:Simple-HTTP-Request:v1.0'
 
+    implementation "androidx.fragment:fragment:1.2.5"
     //key 275dd33817d21c3d0f9e8c2792f90b6a
 }

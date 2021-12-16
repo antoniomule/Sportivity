@@ -20,7 +20,7 @@ import antonio.david.sportivity.Database.Actividad;
 
 public class Activity_DetailFragment extends Fragment {
 
-        public Actividad actividad;
+    public Actividad actividad;
 
     String nombreActividad;
     String ZonaEntreno;
@@ -42,25 +42,26 @@ public class Activity_DetailFragment extends Fragment {
     public Activity_DetailFragment() {
     }
 
+    public static Activity_DetailFragment newInstance(String nombre, String zona, int tiempo, int repeticiones){
+        Activity_DetailFragment fragment = new Activity_DetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("nombre", nombre);
+        bundle.putString("zona", zona);
+        bundle.putInt("tiempo", tiempo);
+        bundle.putInt("repeticiones", repeticiones);
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        nombreActividad = getArguments().getString("nombre");
+        ZonaEntreno = getArguments().getString("zona");
+        Tiempo = getArguments().getInt("tiempo");
+        Repeticiones = getArguments().getInt("repeticiones");
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_lisit_actividades, container, false);
-        NombreActividadInDetail = rootView.findViewById(R.id.NombreActividadInDetail);
-        tiempo_repeticion_a_ejercitar = rootView.findViewById(R.id.tiempo_repeticion_a_ejercitar);
-        imageViewDetail = rootView.findViewById(R.id.imageViewDetail);
-        min_rep = rootView.findViewById(R.id.min_rep);
-
-        //Temporizador
-        text_view_timer = rootView.findViewById(R.id.text_view_timer);
-        mButtonStartPause = rootView.findViewById(R.id.button_start_pause);
-        mButtonReset = rootView.findViewById(R.id.button_reset);
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,17 +105,26 @@ public class Activity_DetailFragment extends Fragment {
             tiempo_repeticion_a_ejercitar.setText(String.valueOf(Repeticiones));
             min_rep.setText(R.string.repeticiones);
         }
-
         updateCountDownText();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_detail_fragment, container, false);
+        NombreActividadInDetail = rootView.findViewById(R.id.NombreActividadInDetail);
+
+        tiempo_repeticion_a_ejercitar = rootView.findViewById(R.id.tiempo_repeticion_a_ejercitar);
+        imageViewDetail = rootView.findViewById(R.id.imageViewDetail);
+        min_rep = rootView.findViewById(R.id.min_rep);
+
+        //Temporizador
+        text_view_timer = rootView.findViewById(R.id.text_view_timer);
+        mButtonStartPause = rootView.findViewById(R.id.button_start_pause);
+        mButtonReset = rootView.findViewById(R.id.button_reset);
         return rootView;
     }
 
-    public void getObjeto(Actividad actividad){
-        nombreActividad=actividad.getNombreActividad();
-        ZonaEntreno= actividad.getZonaEntreno();
-        Tiempo=actividad.getTiempo();
-        Repeticiones=actividad.getRepeticiones();
-    }
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override

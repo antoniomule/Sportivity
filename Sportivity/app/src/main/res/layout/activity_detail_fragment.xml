@@ -5,26 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="916dp"
-        android:layout_height="1497dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fondolayout" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="223dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logoandroid" />
-
     <TextView
         android:id="@+id/text_view_timer"
         android:layout_width="wrap_content"
@@ -87,22 +67,23 @@
         android:id="@+id/imageViewDetail"
         android:layout_width="76dp"
         android:layout_height="63dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="18dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/tiempo_repeticion_a_ejercitar"
         app:layout_constraintStart_toEndOf="@+id/ZonaInDetail"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
         app:srcCompat="@drawable/logoandroid" />
 
     <TextView
         android:id="@+id/NombreInDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/actividad"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintTop_toTopOf="@+id/NombreActividadInDetail" />
 
     <TextView
         android:id="@+id/Tiempo_RepeticionInDetail"
@@ -119,8 +100,8 @@
         android:id="@+id/min_rep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/min_rep"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/tiempo_repeticion_a_ejercitar"
@@ -130,11 +111,13 @@
         android:id="@+id/NombreActividadInDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="64dp"
         android:text="@string/edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDetail"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/NombreInDetail"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tiempo_repeticion_a_ejercitar"

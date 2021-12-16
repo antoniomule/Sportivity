@@ -43,12 +43,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/activity_pre_cardview" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerViewDetail_Activity"
-            android:name="antonio.david.sportivity.Activity_DetailFragment"
-            android:layout_width="914dp"
-            android:layout_height="88dp" />
-
         <!--<androidx.fragment.app.FragmentContainerView
             android:id="@+id/activity_detail_container"
             android:layout_width="907dp"
@@ -61,16 +55,18 @@
             android:layout_width="912dp"
             android:layout_height="763dp" />-->
 
-        <include
-            layout="@layout/activity_detail"
-            android:layout_width="912dp"
-            android:layout_height="763dp" />
 
         <Button
             android:id="@+id/buttonAdd"
             android:layout_width="422dp"
             android:layout_height="89dp"
             android:text="@string/anadir_activdad_personalizada" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerViewDetail_Activity"
+            android:name="antonio.david.sportivity.Activity_DetailFragment"
+            android:layout_width="485dp"
+            android:layout_height="104dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

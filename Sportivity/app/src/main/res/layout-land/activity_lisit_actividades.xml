@@ -32,6 +32,8 @@
         tools:context="MainActivity">
 
 
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reciclerViewPre"
             android:layout_width="325dp"
@@ -47,16 +49,13 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerViewDetail_Activity"
+            android:name="antonio.david.sportivity.Activity_DetailFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
-        <include
-            layout="@layout/activity_detail"
-            android:layout_width="373dp"
-            android:layout_height="339dp"
-            android:layout_marginEnd="16dp" />
 
     </LinearLayout>
 

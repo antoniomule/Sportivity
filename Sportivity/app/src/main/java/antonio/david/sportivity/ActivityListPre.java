@@ -51,13 +51,12 @@ public class ActivityListPre extends AppCompatActivity {
             @Override
             public void onItemClick(View v, int position) {
                 if (mTwoPaneListPre) {
-                    Actividad actividad = adapter.getActividadAtPosition(position);
-                    Activity_DetailFragment fragment = (Activity_DetailFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerViewDetail_Activity);
-                    fragment.getObjeto(actividad);
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentContainerViewDetail_Activity, fragment)
-                            .addToBackStack(null)
-                            .commit();
+                        Actividad actividad = adapter.getActividadAtPosition(position);
+                        Activity_DetailFragment fragment = Activity_DetailFragment.newInstance(actividad.getNombreActividad(), actividad.getZonaEntreno(), actividad.getTiempo(), actividad.getRepeticiones());
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentContainerViewDetail_Activity, fragment)
+                                .addToBackStack(null)
+                                .commit();
                 } else {
                     Actividad actividad = adapter.getActividadAtPosition(position);
                     Intent intent = new Intent(ActivityListPre.this, Activity_Detail.class);
